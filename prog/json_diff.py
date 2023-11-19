@@ -35,8 +35,8 @@ def main():
             print(differences)
     except json.JSONDecodeError as e:
         print(f"Error parsing JSON: {e}", file=sys.stderr)
-        sys.exit(1)
+        sys.exit(2)  # Exit with a non-zero status to indicate an error
 
-if __name__ == '__main__':
+if _name_ == '_main_':
     main()
 
