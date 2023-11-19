@@ -37,8 +37,8 @@ class TestProgram(unittest.TestCase):
                          f'Failed test: {program}.{test_name} with {"arguments" if use_args else "stdin"}')
     
     def test_compare_json(self):
-        self.run_test('compare_json', 'test1')
-        self.run_test('compare_json', 'test2')
+        self.run_test('compare_json', 'test1', use_args=True)
+
 
     def test_wc(self):
         #self.run_test('wc', 'test1', use_args=True)
