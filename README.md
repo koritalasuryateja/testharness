@@ -21,14 +21,14 @@ No issues are currently running; the utility functions as expected.
 I encountered an issue where gron.py was incorrectly interpreting a JSON structure as a filename. After a thorough review, I resolved the problem by adjusting the test harness to distinguish when to provide the JSON data directly via STDIN and when to treat the input as a file argument.
 
 ## Implemented Extensions
-1.Command-Line Flags for wc.py: This utility supports flags to selectively count lines, words, or characters.
+- Command-Line Flags for wc.py: This utility supports flags to selectively count lines, words, or characters.
 example comand:
 $ ./your_script.py -l file.txt  # Count lines only
 $ ./your_script.py -lw file.txt  # Count lines and words
-2.To support multiple files for wc.py: this utility lets you specify multiple files, where it will print a total
-example command:
+- To support multiple files for wc.py: this utility lets you specify multiple files, where it will print a total
+ example command:
 $ ./your_script.py file1.txt file2.txt
-3.By default, gron uses json as the name of the base object. Add a flag --obj that takes an argument specifying a different base object
+- By default, gron uses json as the name of the base object. Add a flag --obj that takes an argument specifying a different base object
 example:
 $ ./your_script.py --obj o eg.json
 o = {};
@@ -67,10 +67,10 @@ file2.json:
 output:
 @@ -1,7 +1,7 @@
  {
--  "name": "John",
--  "age": 30,
--  "city": "New York"
-+  "name": "Jane",
-+  "age": 25,
-+  "city": "San Francisco"
++ -"name": "John",
++ -"age": 30,
++ -"city": "New York"
++ +"name": "Jane",
++ +"age": 25,
++ +"city": "San Francisco"
  }
