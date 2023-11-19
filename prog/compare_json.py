@@ -37,6 +37,5 @@ def main():
         print(f"Error parsing JSON: {e}", file=sys.stderr)
         sys.exit(2)  # Exit with a non-zero status to indicate an error
 
-if _name_ == '_main_':
+if __name__ == '__main__':
     main()
-
