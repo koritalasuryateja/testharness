@@ -1,5 +1,7 @@
- {
-   "age": 30,
-   "city": "New York",
-   "name": "John"
+--- 
++++ 
+@@ -2,5 +2,5 @@
+  "name": "John",
+- "age": 30
++ "age": 31
  }
