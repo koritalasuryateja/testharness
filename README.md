@@ -1,23 +1,26 @@
-#Project 1: Test Harness
-#Personal Information
-Name: Koritala Surya Teja 
-Stevens Login: skorital1@stevens.edu
-#Repository URL
+# Project 1: Test Harness
+
+
+## Personal Information
+- Name: Koritala Surya Teja 
+- Stevens Login: skorital1@stevens.edu
+
+## Repository URL
 (https://github.com/koritalasuryateja/testharness)
 
-#Time Spent
+## Time Spent
 I spent almost 18 hours on this project.
 
-#Testing Approach
+## Testing Approach
 I have implemented a test harness in test.py that automates the testing process. This harness reads .in input files and compares the program's output to the expected .out files. Tests were written to cover a range of scenarios, including edge cases for error handling and standard usage.
 
-#Known Bugs/Issues
+## Known Bugs/Issues
 No issues are currently running; the utility functions as expected.
 
-#Difficult Issues and Resolutions
+## Difficult Issues and Resolutions
 I encountered an issue where gron.py was incorrectly interpreting a JSON structure as a filename. After a thorough review, I resolved the problem by adjusting the test harness to distinguish when to provide the JSON data directly via STDIN and when to treat the input as a file argument.
 
-#Implemented Extensions
+## Implemented Extensions
 1.Command-Line Flags for wc.py: This utility supports flags to selectively count lines, words, or characters.
 example comand:
 $ ./your_script.py -l file.txt  # Count lines only
@@ -44,7 +47,7 @@ o.menu.popup.menuitem[2] = {};
 o.menu.popup.menuitem[2].value = "Close"
 o.menu.popup.menuitem[2].onclick = "CloseDoc()"
 
-#Program 3: json_diff
+## program3: json_diff
 utility script for comparing two JSON files
 example:
 file1.json:
