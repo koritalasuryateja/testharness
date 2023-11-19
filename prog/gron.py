@@ -1,5 +1,6 @@
 import json
 import sys
+import argparse
 
 def flatten_json(obj, path=''):
     if isinstance(obj, dict):
@@ -13,27 +14,32 @@ def flatten_json(obj, path=''):
         value = json.dumps(obj)
         yield f"{path} = {value}"
 
-def gron(json_text):
+def gron(json_text, base_object='json'):
     json_obj = json.loads(json_text)
-    return "\n".join(flatten_json(json_obj))
+    return "\n".join([f"{base_object} = {{"]] + list(flatten_json(json_obj, f"{base_object}.")) + ["}"])
 
 def main():
-    if len(sys.argv) > 1:
-        json_file = sys.argv[1]
-        if json_file == '-':
-            json_input = sys.stdin.read()
-        else:
-            with open(json_file, 'r') as file:
-                json_input = file.read()
-    else:
+    parser = argparse.ArgumentParser(description='A Python implementation of the gron utility.')
+    parser.add_argument('file', nargs='?', type=argparse.FileType('r'), default=sys.stdin,
+                        help='A filename to read from. If omitted, will read from STDIN.')
+    parser.add_argument('--obj', help='Specify the base object name.')
+
+    args = parser.parse_args()
+
+    if args.file.name == '<stdin>':
         json_input = sys.stdin.read()
+    else:
+        with open(args.file.name, 'r') as file:
+            json_input = file.read()
 
     try:
-        print(gron(json_input))
+        base_object = args.obj if args.obj else 'json'
+        print(gron(json_input, base_object))
     except json.JSONDecodeError as e:
         print(f"Error parsing JSON: {e}", file=sys.stderr)
         sys.exit(1)
 
 if __name__ == '__main__':
     main()
+
 
