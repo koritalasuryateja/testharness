@@ -1,2 +1,2 @@
-file1.json
-file2.json
+./test/file1.json
+./test/file2.json
