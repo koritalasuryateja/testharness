@@ -38,7 +38,7 @@ class TestProgram(unittest.TestCase):
     
     def test_compare_json(self):
         self.run_test('compare_json', 'test1')
-        #self.run_test('compare_json', 'test2')
+        self.run_test('compare_json', 'test2')
 
     def test_wc(self):
         #self.run_test('wc', 'test1', use_args=True)
