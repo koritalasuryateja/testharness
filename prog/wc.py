@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import sys
 import argparse
 
@@ -45,5 +47,4 @@ def main():
     print(" ".join(output))
 
 if __name__ == '__main__':
-
     main()
