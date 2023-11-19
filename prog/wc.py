@@ -2,6 +2,7 @@
 
 import sys
 import argparse
+import os
 
 def count_lines(text):
     return len(text.splitlines())
@@ -19,18 +20,8 @@ def wc(text):
     
     return num_lines, num_words, num_characters
 
-# Main function for command-line usage
-def main():
-    parser = argparse.ArgumentParser(description='A Python implementation of the wc utility.')
-    parser.add_argument('file', nargs='?', type=argparse.FileType('r'), default=sys.stdin,
-                        help='A filename to read from. If omitted, will read from STDIN.')
-    parser.add_argument('-l', '--lines', action='store_true', help='Count the number of lines')
-    parser.add_argument('-w', '--words', action='store_true', help='Count the number of words')
-    parser.add_argument('-c', '--characters', action='store_true', help='Count the number of characters')
-
-    args = parser.parse_args()
-
-    text = args.file.read()
+def process_file(file, args):
+    text = file.read()
     counts = wc(text)
 
     output = []
@@ -44,7 +35,27 @@ def main():
     if not output:
         output = [str(count) for count in counts]
 
-    print(" ".join(output))
+    return output
+
+def main():
+    parser = argparse.ArgumentParser(description='A Python implementation of the wc utility.')
+    parser.add_argument('files', nargs='*', type=argparse.FileType('r'), default=[sys.stdin],
+                        help='Filenames to read from. If omitted, will read from STDIN.')
+    parser.add_argument('-l', '--lines', action='store_true', help='Count the number of lines')
+    parser.add_argument('-w', '--words', action='store_true', help='Count the number of words')
+    parser.add_argument('-c', '--characters', action='store_true', help='Count the number of characters')
+
+    args = parser.parse_args()
+
+    total_counts = [0, 0, 0]
+
+    for file in args.files:
+        output = process_file(file, args)
+        total_counts = [total + int(count) for total, count in zip(total_counts, output)]
+        print(f"{' '.join(output)} {file.name}")
+
+    if len(args.files) > 1:
+        print(f"{' '.join(map(str, total_counts))} total")
 
 if __name__ == '__main__':
     main()
