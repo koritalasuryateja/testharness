@@ -8,25 +8,28 @@ class TestProgram(unittest.TestCase):
 
     def run_test(self, program, test_name, use_args=False):
         input_file = f'{self.test_dir}/{program}.{test_name}.in'
-        expected_file = f'{self.test_dir}/{program}.{test_name}' + ('.arg.out' if use_args else '.out')
-        
+        expected_file = f'{self.test_dir}/{program}.{test_name}.arg.out'  # Use '.arg.out' for tests with arguments
         cmd = ['python', os.path.join(self.prog_dir, f"{program}.py")]
+        
         if use_args:
-            cmd.extend([input_file, expected_file])  # Correctly append the input files
+            with open(input_file, 'r') as f:
+                # Assuming the input file contains the paths to the JSON files on separate lines
+                file1_path, file2_path = [line.strip() for line in f.readlines()]
+                cmd.extend([file1_path, file2_path])
+            
             process = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-            self.assertEqual(process.returncode, 0, f"Standard Error Output: {process.stderr.decode('utf-8')}")
             actual_output = process.stdout.decode('utf-8')
-        else:
-            with open(input_file, 'rb') as f:
-                process = subprocess.run(cmd, stdin=f, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-                self.assertEqual(process.returncode, 0)
-                actual_output = process.stdout.decode('utf-8')
+    
+            self.assertEqual(process.returncode, 0, f"Standard Error Output: {process.stderr.decode('utf-8')}")
+    
+        # Rest of the code...
         
         with open(expected_file, 'r') as f:
             expected_output = f.read().strip()
         
         self.assertEqual(actual_output.strip(), expected_output,
-                         f'Failed test: {program}.{test_name} with {"arguments" if use_args else "stdin"}')
+                         f"Failed test: {program}.{test_name} with {'arguments' if use_args else 'stdin'}")
+
 
     
     def test_compare_json(self):
