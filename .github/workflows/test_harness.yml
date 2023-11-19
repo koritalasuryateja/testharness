@@ -25,5 +25,5 @@ jobs:
       run: |
         chmod +x ./prog/wc.py
         chmod +x ./prog/gron.py
-        chmod +x ./prog/file_finder.py
+        chmod +x ./prog/json_diff.py
         python test.py
