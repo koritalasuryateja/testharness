@@ -28,20 +28,20 @@ Error Handling in compare_json.py: The compare_json.py script was not exiting wi
 example comand:
 
 ```
-$ ./your_script.py -l file.txt  # Count lines only
-$ ./your_script.py -lw file.txt  # Count lines and words
+$ ./wc.py -l file.txt  # Count lines only
+$ ./wc.py -lw file.txt  # Count lines and words
 ```
 - To support multiple files for wc.py: this utility lets you specify multiple files, where it will print a total
   
  example command:
 ```
-$ ./your_script.py file1.txt file2.txt
+$ ./wc.py file1.txt file2.txt
 ```
 - By default, gron uses json as the name of the base object. Add a flag --obj that takes an argument specifying a different base object
   
 example:
 ```
-$ ./your_script.py --obj o eg.json
+$ ./gron.py --obj o eg.json
 o = {};
 o.menu = {};
 o.menu.id = "file"
