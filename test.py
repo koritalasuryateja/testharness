@@ -12,7 +12,7 @@ class TestProgram(unittest.TestCase):
         
         # If use_args is True, the input should be passed as a command-line argument
         cmd = ['python', os.path.join(self.prog_dir, f"{program}.py")]
-       if use_args:
+        if use_args:
             process = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
             self.assertEqual(process.returncode, 0, f"Standard Error Output: {process.stderr.decode('utf-8')}")
             actual_output = process.stdout.decode('utf-8')
